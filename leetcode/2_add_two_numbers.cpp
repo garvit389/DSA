@@ -95,22 +95,20 @@ public:
                 curr->next=remaining_list;
                 break;
             }
-
+            curr->next = new ListNode();
             curr=curr->next;
             int tempsum = remaining_list->val + carry;
             curr->val = tempsum%10;
             carry = tempsum/10;
 
             remaining_list=remaining_list->next;
-
-            if(remaining_list){
+                
+            if(carry != 0 && remaining_list==nullptr) {
                 curr->next = new ListNode();
-                if(remaining_list==nullptr && carry != 0) {
-                    curr=curr->next;
-                    curr->val = carry;
-                }
+                curr=curr->next;
+                curr->val = carry;
             }
         }
-        return sum;        
+        return sum;         
     }
 };
